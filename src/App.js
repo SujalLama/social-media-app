@@ -1,11 +1,16 @@
-import './App.css';
+import MainRouter from './mainRouter'
+import {BrowserRouter} from 'react-router-dom'
+import { ThemeProvider } from '@material-ui/styles'
+import theme from './theme'
 
-function App() {
+const App = () => {
+  
   return (
-    <h1>
-    Mern setup
-    </h1>
-  );
-}
+  <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <MainRouter/>
+      </ThemeProvider>
+  </BrowserRouter>
+)}
 
-export default App;
+export default App
