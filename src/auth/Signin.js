@@ -67,7 +67,8 @@ export default function Signin(props) {
     setValues({ ...values, [name]: event.target.value })
   }
 
-  const {from} = props.location.state || {
+  console.log(props);
+  const {from} = {
       from: {
         pathname: '/'
       }
