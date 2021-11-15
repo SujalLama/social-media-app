@@ -8,7 +8,6 @@ const signin = async (user) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      
       body: JSON.stringify(user)
     })
     console.log(response);
