@@ -9,7 +9,7 @@ import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core/styles'
 import auth from './../auth/auth-helper'
 import {read, update} from './api-user.js'
-import {Navigate} from 'react-router'
+import {Redirect} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -91,7 +91,7 @@ export default function EditProfile({ match }) {
   }
 
     if (values.redirectToProfile) {
-      return (<Navigate to={'/user/' + values.userId}/>)
+      return (<Redirect to={'/user/' + values.userId}/>)
     }
     return (
       <Card className={classes.card}>

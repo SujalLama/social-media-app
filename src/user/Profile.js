@@ -15,8 +15,7 @@ import Divider from '@material-ui/core/Divider'
 import DeleteUser from './DeleteUser'
 import auth from './../auth/auth-helper'
 import {read} from './api-user.js'
-import {Link} from 'react-router-dom'
-import {Navigate} from 'react-router';
+import {Redirect, Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -58,7 +57,7 @@ export default function Profile({ match }) {
   }, [match.params.userId])
   
     if (redirectToSignin) {
-      return <Navigate to='/signin'/>
+      return <Redirect to='/signin'/>
     }
     return (
       <Paper className={classes.root} elevation={4}>

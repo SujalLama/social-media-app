@@ -11,7 +11,7 @@ const create = async (req, res) => {
     })
   } catch (err) {
     return res.status(400).json({
-      error: errorHandler.getErrorMessage(err)
+      error: err
     })
   }
 }
@@ -19,15 +19,16 @@ const create = async (req, res) => {
 /**
  * Load user and append to req.
  */
-const userByID = async (req, res, next, id) => {
+const userByID = async (req, res) => {
   try {
-    let user = await User.findById(id)
+    
+    let user = await User.findById(req.params.userId)
     if (!user)
       return res.status('400').json({
         error: "User not found"
       })
     req.profile = user
-    next()
+    res.json(user);
   } catch (err) {
     return res.status('400').json({
       error: "Could not retrieve user"

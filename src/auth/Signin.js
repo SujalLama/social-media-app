@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core/styles'
 import auth from './../auth/auth-helper'
-import {Navigate} from 'react-router';
+import {Redirect} from 'react-router-dom'
 import {signin} from './api-auth.js'
 
 const useStyles = makeStyles(theme => ({
@@ -67,15 +67,14 @@ export default function Signin(props) {
     setValues({ ...values, [name]: event.target.value })
   }
 
-  console.log(props);
-  const {from} = {
+  const {from} = props.location.state || {
       from: {
         pathname: '/'
       }
   }
   const {redirectToReferrer} = values
   if (redirectToReferrer) {
-      return (<Navigate to={from}/>)
+      return (<Redirect to={from}/>)
   }
 
   return (

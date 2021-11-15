@@ -8,9 +8,10 @@ const signin = async (user) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      credentials: 'include',
+      
       body: JSON.stringify(user)
     })
+    console.log(response);
     return await response.json()
   } catch(err) {
     console.log(err)

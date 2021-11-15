@@ -4,14 +4,14 @@ const authCtrl = require('../controllers/auth.controller')
 const router = express.Router()
 
 router.route('/')
-  .get(userCtrl.list)
-  .post(userCtrl.create)
+.get(userCtrl.list)
+.post(userCtrl.create);
 
-router.route('/:userId')
-  .get(authCtrl.requireSignin, userCtrl.read)
+router.route('/:userId').get(userCtrl.userByID)
   .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.update)
   .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove)
 
-router.param('userId', userCtrl.userByID)
+
+// router.param('userId', userCtrl.userByID)
 
 module.exports = router;
