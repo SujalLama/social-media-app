@@ -1,6 +1,5 @@
 const User = require('../models/user.model')
 const jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt');
 const config = require('../config/config');
 
 const signin = async (req, res) => {
@@ -32,7 +31,8 @@ const signin = async (req, res) => {
       user: {
         _id: user._id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        photo: user.photo,
       }
     })
 
@@ -52,14 +52,41 @@ const signout = (req, res) => {
   })
 }
 
-const requireSignin = expressJwt({
-  secret: config.jwtSecret,
-  algorithms: ['RS256'],
-  userProperty: 'auth'
-})
+// const requireSignin = expressJwt({
+//   secret: config.jwtSecret,
+//   algorithms: ['RS256'],
+//   userProperty: 'auth'
+// })
+
+// const jwt = require('jsonwebtoken')
+// const db = require('../models');
+
+// Protect routes
+const requireSignin = async (req, res, next) => {
+  let token
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1]
+  }
+  
+  if (!token) {
+    return next(res.status(401).json('Not authorize to access this route'))
+  }
+  try {
+    const decoded = jwt.verify(token, config.jwtSecret);
+    req.auth = await User.findOne(decoded);
+    next();
+  } catch (error) {
+    res.status(401).json({
+      error: 'Not authorized, token failed'
+    })
+  }
+}
 
 const hasAuthorization = (req, res, next) => {
-  const authorized = req.profile && req.auth && req.profile._id === req.auth._id
+  const authorized = req.profile && req.auth && req.profile._id.toString() === req.auth._id.toString()
   if (!(authorized)) {
     return res.status('403').json({
       error: "User is not authorized"
