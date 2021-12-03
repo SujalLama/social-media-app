@@ -10,21 +10,25 @@ import { makeStyles } from '@material-ui/core/styles'
 import auth from './../auth/auth-helper'
 import {Redirect} from 'react-router-dom'
 import {signin} from './api-auth.js'
+import './sign-in.css'
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 600,
+    width: '100%',
+    height: '100%',
     margin: 'auto',
     textAlign: 'center',
     marginTop: theme.spacing(5),
-    paddingBottom: theme.spacing(2)
+    paddingBottom: theme.spacing(2),    
+    boxShadow: 'none',
   },
   error: {
     verticalAlign: 'middle'
   },
   title: {
     marginTop: theme.spacing(2),
-    color: theme.palette.openTitle
+    color: theme.palette.openTitle,
+    fontSize: '2em',
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -33,6 +37,8 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: 'auto',
+    backgroundColor: '#6C63FF',
+    color: '#fff',
     marginBottom: theme.spacing(2)
   }
 }))
@@ -78,7 +84,8 @@ export default function Signin(props) {
   }
 
   return (
-      <Card className={classes.card}>
+    <div className="sign-in">
+      <div className={classes.card}>
         <CardContent>
           <Typography variant="h6" className={classes.title}>
             Sign In
@@ -93,8 +100,12 @@ export default function Signin(props) {
           }
         </CardContent>
         <CardActions>
-          <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
+          <Button variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
         </CardActions>
-      </Card>
+      </div>
+      <div className="signin-img-wrapper">
+                <img src="./images/auth.svg" alt="sign image" />
+            </div>
+      </div>
     )
 }

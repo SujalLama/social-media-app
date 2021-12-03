@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import auth from './../auth/auth-helper'
 import FindPeople from './../user/FindPeople'
 import Newsfeed from './../post/Newsfeed'
+import './home.css';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,22 +57,31 @@ export default function Home({history}){
     return (
       <div className={classes.root}>
         { !defaultPage &&
-          <Grid container spacing={8}>
-            <Grid item xs={12}>
-              <Card className={classes.card}>
-                <Typography variant="h6" className={classes.title}>
-                  Home Page
-                </Typography>
-                <CardMedia className={classes.media} image='./images/unicornbike.jpg' title="Unicorn Bicycle"/>
-                <Typography variant="body2" component="p" className={classes.credit} color="textSecondary">Photo by <a href="https://unsplash.com/@boudewijn_huysmans" target="_blank" rel="noopener noreferrer">Boudewijn Huysmans</a> on Unsplash</Typography>
-                <CardContent>
-                  <Typography type="body1" component="p">
-                    Welcome to the MERN Social home page. 
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
+          // <Grid container spacing={8}>
+          //   <Grid item xs={12}>
+          //     <Card className={classes.card}>
+          //       <Typography variant="h6" className={classes.title}>
+          //         Home Page
+          //       </Typography>
+          //       <CardMedia className={classes.media} image='./images/unicornbike.jpg' title="Unicorn Bicycle"/>
+          //       <Typography variant="body2" component="p" className={classes.credit} color="textSecondary">Photo by <a href="https://unsplash.com/@boudewijn_huysmans" target="_blank" rel="noopener noreferrer">Boudewijn Huysmans</a> on Unsplash</Typography>
+          //       <CardContent>
+          //         <Typography type="body1" component="p">
+          //           Welcome to the MERN Social home page. 
+          //         </Typography>
+          //       </CardContent>
+          //     </Card>
+          //   </Grid>
+          // </Grid>
+          <div className="home">
+            <div className="tag-line">
+                <h2 className="heading-1">Welcome to MERN.</h2>
+                <h1>Social Media</h1>
+            </div>
+            <div className="hero-img-wrapper">
+                <img src="./images/hero.svg" alt="hero image" />
+            </div>
+          </div>
         }
         {defaultPage &&
           <Grid container spacing={8}>
