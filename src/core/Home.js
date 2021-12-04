@@ -85,10 +85,10 @@ export default function Home({history}){
         }
         {defaultPage &&
           <Grid container spacing={8}>
-            <Grid item xs={8} sm={7}>
+            <Grid item xs={12} sm={7}>
               <Newsfeed/>
             </Grid>
-            <Grid item xs={6} sm={5}>
+            <Grid item xs={12} sm={5}>
               <FindPeople/>
             </Grid>
           </Grid>

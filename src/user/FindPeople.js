@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1em'
   },
   avatar: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   follow: {
     right: theme.spacing(2)
